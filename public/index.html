@@ -11,38 +11,36 @@
 <body>
     <header>
       <img src="./img/icon.png" alt="icon">
-     <h1>Weather</h1>
+      <h1>Weather</h1>
     </header>
-    <div class="main">
-        <p>
-            Enter any location to get weather details
-        </p>
-        <form>
-            <input type="text" placeholder="Location..."></input>
-            <button type="submit">GO</button>
-            <br><br>
-        </form>
+    <br>
+    <!-- Powred by<a href="#">Dark Sky API</a> and <a href="#">Mapbox API</a> -->
+    <form>
+        <input type="text" placeholder="Location..."></input>
+        <button type="submit">GO</button>
+        <br><br>
+    </form>
+    <div class="main"></div>
         <div class="loader hide">
             <div></div>
         </div>
-        <div class="wrapper hide">
-                <h2 class="locationName">location</h2>
-                <div class="data">
-                   <ul>
-                       <li><h4>TEMP:</h4><span id="temp"></span></li>
-                       <li><h4>MAX:</h4><span id="maxTemp"></span></li>
-                       <li><h4>MIN:</h4><span id="minTemp"></span></li>
-                       <li><h4>Pressure:</h4><span id="pressure"></span></li>
-                       <li><h4>wind:</h4><span id="wind"></span></li>
-                       <li><h4>Humidity:</h4><span id="humidity"></span></li>
-                    </ul>     
-                </div>
-                <div class="summary-container">
-                   <div class="summary"></div>
-                   Current temperature is <span id="temp"></span>degrees.
-                   There are <span id="precipProbab"></span>/1 chances of rain today;
-                </div>
+        <div class="wrapperTo-> hide">
+            <div class="container">
+                <div class="locationName">California,SF</div>
+                <div class="summary">bright sky today</div>
+            </div>    
+            <div class="data">
+                <ul>
+                    <li><h4>TEMP:<span id="temp">28</span>C</h4></li>
+                    <li><h4>MAX:<span id="maxTemp">32</span>C</h4></li>
+                    <li><h4>MIN:<span id="minTemp">18</span>C</h4></li>
+                    <li><h4>Pressure:<span id="pressure">1</span>mmHg</h4></li>
+                    <li><h4>wind:<span id="wind">2</span></h4>km/h</li>
+                    <li><h4>Humidity:<span id="humidity">25</span>mm</h4></li>
+                </ul>     
             </div>
+            <div class="graph"></div>
+        </div>
     </div>
     <script src="./main.js"></script>
 </body>
