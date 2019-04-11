@@ -1,18 +1,20 @@
 const request = require('request');
+require('dotenv').config();
 
 const geocode = (location,callback)=>{
-    const url = "https://api.mapbox.com/geocoding/v5/mapbox.places/"+ location +".json?limit=1&access_token=" + process.environment.GEOCODE;
+    const url = "https://api.mapbox.com/geocoding/v5/mapbox.places/"+ location +".json?limit=1&access_token=" + process.env.GEOCODE;
     request({url :url,json: true },(err,res)=>{
         if(err){
-            callback("unable to find locaton",undefined)
+            callback("Unable to connect",undefined)
         }
-        else if(res.body.features[0].length == 0){
-            callback("unable to locate",undefined)
+        else if(res.body.features.length == 0){
+            callback("Unable to find location.Please be more specific by adding country or state name",undefined)
         }
         else{
+            
             callback(undefined,{
-                latitude:res.body.features[0].center[0],
-                longitude:res.body.features[0].center[1],
+                longitude:res.body.features[0].center[0],
+                latitude:res.body.features[0].center[1],
                 location:res.body.features[0].place_name
             })
         }

@@ -1,20 +1,21 @@
 const request = require('request');
+require('dotenv').config();
 
-const forecast = (lati,long,callback)=>{
-    console.log("fetching details")
-    const url = "https://api.darksky.net/forecast/"+ process.environment.forecast +"/37.8267,-122.4233";
+const forecast = (geocode,callback)=>{
+    const url = `https://api.darksky.net/forecast/${process.env.FORECAST}/${geocode.latitude},${geocode.longitude}`;
     request({url :url,json: true },(err,res)=>{
         if(err){
-            callback("unable to find locaton",undefined)
+            console.log(error);
+            callback("Unable to connect",undefined)
         }
         else if(res.body.error){
-            callback("unable to locate",undefined)
+            callback("Unable to get weather details",undefined)
         }
         else{
-            let data = "current temperature is " + res.body.currently.temperature + ".There is" + res.body.currently.preciProbabilty + "% chance of rain.";
-            callback(undefined, data )
+            let forecastData = `${ res.body.hourly.summary} Current temperature is ${res.body.currently.temperature} degrees.There are ${res.body.currently.precipProbability}/1 chances of rain today.`;
+            callback(undefined, forecastData);
         }
     })
 }
 
-module.exports = forecast;
+module.exports = forecast;                              
