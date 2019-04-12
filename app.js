@@ -15,6 +15,7 @@ app.get('/weather',(req,res)=>{
         return res.send({error : "please provide a location"})
     }
     let location = req.query.q;
+    console.log(location);
     geocode(location,(err,geoData)=>{
         if(err){
             console.log("error1");
@@ -25,6 +26,7 @@ app.get('/weather',(req,res)=>{
                 console.log("error2");
                 return res.send({error : err})
             }
+            console.log("fetc");
             res.send({            
                 forecast: forecastData,
                 location: geoData.location

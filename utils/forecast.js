@@ -12,8 +12,8 @@ const forecast = (geocode,callback)=>{
             callback("Unable to get weather details",undefined)
         }
         else{
-            let forecastData = `${ res.body.hourly.summary} Current temperature is ${res.body.currently.temperature} degrees.There are ${res.body.currently.precipProbability}/1 chances of rain today.`;
-            callback(undefined, forecastData);
+            console.log(res.body);
+            callback(undefined, res.body);
         }
     })
 }

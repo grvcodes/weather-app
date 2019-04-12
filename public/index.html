@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./index.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="icon" href="./img/icon.png">
     <title>Weather App</title>
 </head>
 <body>
     <header>
-        <i class="fas fa-cloud-sun"></i>
+      <img src="./img/icon.png" alt="icon">
      <h1>Weather</h1>
     </header>
     <div class="main">
@@ -18,16 +18,31 @@
             Enter any location to get weather details
         </p>
         <form>
-            <input type="text" placeholder="Enter a location here....."></input>
+            <input type="text" placeholder="Location..."></input>
             <button type="submit">GO</button>
+            <br><br>
         </form>
-        
-    <div class="search">
-        
-    </div>
-    <div class="dataDisplay">
-
-    </div>
+        <div class="loader hide">
+            <div></div>
+        </div>
+        <div class="wrapper hide">
+                <h2 class="locationName">location</h2>
+                <div class="data">
+                   <ul>
+                       <li><h4>TEMP:</h4><span id="temp"></span></li>
+                       <li><h4>MAX:</h4><span id="maxTemp"></span></li>
+                       <li><h4>MIN:</h4><span id="minTemp"></span></li>
+                       <li><h4>Pressure:</h4><span id="pressure"></span></li>
+                       <li><h4>wind:</h4><span id="wind"></span></li>
+                       <li><h4>Humidity:</h4><span id="humidity"></span></li>
+                    </ul>     
+                </div>
+                <div class="summary-container">
+                   <div class="summary"></div>
+                   Current temperature is <span id="temp"></span>degrees.
+                   There are <span id="precipProbab"></span>/1 chances of rain today;
+                </div>
+            </div>
     </div>
     <script src="./main.js"></script>
 </body>
