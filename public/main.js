@@ -37,8 +37,6 @@ form.addEventListener("submit",(e)=>{
     if(!(hasClass(wrapper,'hide'))){
         loader.classList.toggle("hide");
       }
-
-    loader.classList.toggle("hide");
     let location = input.value;
     
     fetch("/weather?q="+location).then((res)=>{
