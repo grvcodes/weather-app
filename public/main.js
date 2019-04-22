@@ -17,7 +17,7 @@ let wrapper = document.querySelector(".wrapper")
  
  function hasClass(element,className){
     let x= element.classList;
-    for(i=0;i<2;i++){
+    for(i=0;i<x.length;i++){
         if(x[i]==className){
             console.log("have this class")
             return true
@@ -29,8 +29,8 @@ let wrapper = document.querySelector(".wrapper")
 form.addEventListener("submit",(e)=>{
 
     e.preventDefault();
-     /*remove hide class to loader if absent*/
-    if(!(hasClass(loader,'hide'))){
+     /*remove hide class from loader if present*/
+    if((hasClass(loader,'hide'))){
         loader.classList.toggle("hide");
     }
     /*add hide class to data if class removed from it by previous display of data*/
