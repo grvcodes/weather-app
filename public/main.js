@@ -14,18 +14,37 @@ let wrapper = document.querySelector(".wrapper")
  let humidity = document.querySelector("span#humidity")
  let summary = document.querySelector("div.summary")
 
- console.log(temp);
+ 
+ function hasClass(element,className){
+    let x= element.classList;
+    for(i=0;i<2;i++){
+        if(x[i]==className){
+            console.log("have this class")
+            return true
+        }
+    }
+    return false
+}
+
 form.addEventListener("submit",(e)=>{
 
     e.preventDefault();
+     /*remove hide class to loader if present*/
+    if((hasClass(loader,'hide'))){
+        loader.classList.toggle("hide");
+    }
+    /*add hide class to data if class removed from it by previous display of data*/
+    if(!(hasClass(wrapper,'hide'))){
+        loader.classList.toggle("hide");
+      }
 
     loader.classList.toggle("hide");
     let location = input.value;
     
     fetch("/weather?q="+location).then((res)=>{
         res.json().then((data)=>{
-            loader.classList.toggle("hide");
-            wrapper.classList.toggle("hide");
+        loader.classList.toggle("hide");/*add hide class to hide the loader*/
+        wrapper.classList.toggle("hide");/*remove hide class to display data ehen available*/
             if(data.error){
                 return locationName.textContent= data.error;
             }
