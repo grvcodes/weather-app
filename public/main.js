@@ -35,7 +35,7 @@ form.addEventListener("submit",(e)=>{
     }
     /*add hide class to data if class removed from it by previous display of data*/
     if(!(hasClass(wrapper,'hide'))){
-        loader.classList.toggle("hide");
+        wrapper.classList.toggle("hide");
       }
     let location = input.value;
     
