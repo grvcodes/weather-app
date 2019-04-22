@@ -29,8 +29,8 @@ let wrapper = document.querySelector(".wrapper")
 form.addEventListener("submit",(e)=>{
 
     e.preventDefault();
-     /*remove hide class to loader if present*/
-    if((hasClass(loader,'hide'))){
+     /*remove hide class to loader if absent*/
+    if(!(hasClass(loader,'hide'))){
         loader.classList.toggle("hide");
     }
     /*add hide class to data if class removed from it by previous display of data*/
