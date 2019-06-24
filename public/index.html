@@ -11,22 +11,22 @@
 <body>
     <header>
       <img src="./img/icon.png" alt="icon">
-      <h1>Weather</h1>
+      <form>
+        <input type="text" placeholder="Location..."></input>
+        <button type="submit">GO</button>
+      </form>
     </header>
     <br>
     <!-- Powred by<a href="#">Dark Sky API</a> and <a href="#">Mapbox API</a> -->
-    <form>
-        <input type="text" placeholder="Location..."></input>
-        <button type="submit">GO</button>
-        <br><br>
-    </form>
-    <div class="main"></div>
+
+    <div class="main">
         <div class="loader hide">
             <div></div>
         </div>
         <div class="wrapperTo hide">
             <div class="container">
-                <div class="locationName">California,SF</div>
+                <i>icon here</i>
+                <div class="locationName">Delhi,India</div>
                 <div class="summary">bright sky today</div>
             </div>    
             <div class="data">
@@ -38,10 +38,26 @@
                     <li><h4>wind:<span id="wind">2</span></h4>km/h</li>
                     <li><h4>Humidity:<span id="humidity">25</span>mm</h4></li>
                 </ul> 
-            
             </div>
-               
-            <div class="graph"></div>
+            <div class ="locations">
+                <div>
+                    <h2>location1</h2>
+                    <div class="footer">
+                        <h4>28C</h4>
+                        <h4>15C</h4>
+                    </div>
+                </div>
+                <div>
+                    <h3>location1</h3>
+                    <div class="footer">
+                        <h4>28C</h4>
+                        <h4>15C</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="graph">
+
+            </div>
         </div>
     </div>
     <script src="./main.js"></script>

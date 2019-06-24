@@ -19,31 +19,31 @@ ul{
 }
 header{
     display: flex;
+    justify-content: flex-start;
     align-items: center;
     font-size: 1rem;
     font-family: monospace;
     margin: 0;
+    background-color: white;
     border-bottom: 1px solid black;
 }
 header img{
-    margin: 0 1rem .5rem .5rem; 
+    margin: 0 1em 0 .5rem;
+    flex: 0; 
+    padding: .5em 1em .2em .2em;
+    border-right: 2px solid black;
 }
-header h1{
-    margin: 0;
-}
-
 form{
-    margin: 0 auto;
+    flex: 1 1 0;
+    margin: 1px;
+    max-width: 60vw;
     position: relative;
-    max-width: 750px;
 }
 input{
     font-size: 1rem;
     padding: .1em .8em;
-    position: absolute;
-    left: 0;
     width: 70%;
-    border: 2px solid tomato;
+    border: 2px solid rgb(214, 73, 73);
     border-right: none;
     border-radius: 1em 0 0 1em;
 }
@@ -51,29 +51,27 @@ button{
     font-size: 1rem;
     padding: .1em .4em;
     color: white;
-    background-color: tomato;
+    background-color: rgb(214, 73, 73);
     border-radius: 0 1em 1em 0;
-    border: 2px solid tomato;
+    border: 2px solid rgb(214, 73, 73);
     border-left: none;
     position: absolute;
     left: 70%;
     width: 30%;
     cursor: pointer;
 }
-/* div.loader{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-} */
-
-div.loader div::before{
+div.main{
+    margin: 10px 0 0;
+    position: relative;
+}
+/* div.loader div::before{
     content: " ";
     position: absolute;
-    top: calc(50% - 5vh);
+    top: 100px;
     left: calc(50% - 5vh);
     height: 10vh;
     width: 10vh;
-    background-image: linear-gradient(to bottom,tomato 50%, white 50%);
+    background-image: linear-gradient(to bottom, rgb(214,73,73) 50%, white 50%);
     border-radius: 50%;
     animation: rotate 1s;
     animation-iteration-count: infinite;
@@ -81,32 +79,26 @@ div.loader div::before{
 div.loader div::after{
     content: " ";
     position: absolute;
-    top: calc(50% - 4vh);
+    top: calc(100px + 1vh);
     left: calc(50% - 4vh);
     height: 8vh;
     width: 8vh;
     background-color: white;
     border-radius: 50%;
-}
-div.main{
-    margin: 10px 0 0;
-}
+} */
 div.container{
     display: flex;
-    width: 60vw;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     margin: 5px auto;
     font-size: 1rem;
-}
-div.container>*{
-    margin: 2px 50px;
+    padding: 2em 2em;
 }
 div.container .locationName{
-    width: 30%;
+    flex: 0 0 50px;
     font-size: 1.5rem;
-    margin-right: 2em;
-    color: darkslategrey;
+    margin-right: 1em;
+    color: rgb(214, 73, 73);
 }
    
 div.data ul{
@@ -118,13 +110,18 @@ div.data ul{
     margin: auto;
     display: flex;
     padding: 0px 2px;
+    box-shadow: inset -5px 0px  5px rgb(255, 255, 255);
 }
 div.data ul li{
     display: inline-block;
     padding-right: 20px;
     flex: 75px 1 0;
     padding: 5px;
-    border-right: 1px dashed aliceblue;
+    border-right: 1px solid wheat;
+}
+div.data ul li:last-child{
+    border: none;
+    box-shadow: inset -10px 0  0 #292828;
 }
 div.data ul li h4{
     display: inline;
@@ -135,12 +132,50 @@ div.data ul li span{
     font-size: 1.5rem;
     margin-left: 0.5em;
 }
-.hide{
+/* .hide{
     display: none;
-}
+} */
 #graph{
     height: 500px;
     min-width: 100vw;
+}
+div.locations{
+    margin-top: 2em;
+    display: flex;
+    justify-content: space-evenly;
+}
+div.locations>div{
+    display: inline-flex;
+    flex-direction: column;
+    border: 1px solid black;
+    background-color: rgb(47, 47, 202);
+    padding: 1em 2em;
+    color: white;
+    border-radius: 1em;
+    box-shadow: 2px 0 5px 0 #292828;
+    transform: scale(.9);
+    transition: all 100ms ease;
+    position: relative;
+}
+div.locations>div::after{
+    content: "";
+    background-color: aliceblue;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+}
+div.locations>div:hover{
+    transform: scale(1);
+}
+div.locations>div div.footer{
+    display: flex;
+    justify-content: space-between;
+}
+div.locations>div div.footer h4{
+    margin: 0;
 }
 @keyframes rotate{
     from{
