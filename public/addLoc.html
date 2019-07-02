@@ -11,55 +11,30 @@
 <body>
     <header>
       <img src="./img/icon.png" alt="icon">
-      <form> 
-        <input type="text" placeholder="Location..."></input>
-        <button type="submit">GO</button>
-      </form>
+    
     </header>
     <br>
     <div class="addLoc-main">
-        
+        <form class="addLoc-form">
+            <input type="text" placeholder="Type Location to search for.."></input>
+            
+            <button type="submit">search</button>
+        </form>
+        <div class="main">
+            <div class="loader hide">
+                <div></div>
+            </div>
+            <div class="wrapperTo hide">
+                <div class="tab">
+                    <h3 class="display">location name</h3>
+                    <button class = "save">save</button>
+                </div>
+                <div class="fallback">
+
+                </div>
+            </div>
+        </div>       
     </div>
-    <!-- Powred by<a href="#">Dark Sky API</a> and <a href="#">Mapbox API</a> -->
-
-    <!-- <div class="main">
-        <div class="loader hide">
-            <div></div>
-        </div>
-        <div class="wrapperTo hide">
-            <div class="container">
-                <i>icon here</i>
-                <div class="locationName">Delhi,India</div>
-                <div class="summary">bright sky today</div>
-            </div>    
-            <div class="data">
-                <ul>
-                    <li><h4>TEMP:<span id="temp">28</span>C</h4></li>
-                    <li><h4>MAX:<span id="maxTemp">32</span>C</h4></li>
-                    <li><h4>MIN:<span id="minTemp">18</span>C</h4></li>
-                    <li><h4>Pressure:<span id="pressure">1</span>mmHg</h4></li>
-                    <li><h4>wind:<span id="wind">2</span></h4>km/h</li>
-                    <li><h4>Humidity:<span id="humidity">25</span>mm</h4></li>
-                </ul> 
-            </div>
-            <div class ="locations">
-                <div>
-                    <h3>location1</h3>
-                    <div class="footer">
-                        <h4>28C</h4>
-                        <h4>15C</h4>
-                    </div>
-                </div>
-                <div class="add">
-                    <h3>+</h3>
-                </div>
-            </div>
-            <div class="graph">
-
-            </div>
-        </div>
-    </div> -->
-    <script src="./main.js"></script>
     <script src="./addLoc.js"></script>
 </body>
 </html>
