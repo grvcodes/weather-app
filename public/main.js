@@ -96,6 +96,9 @@ form.addEventListener("submit",(e)=>{
     }
     
     let location = input.value;
+    if(! location){
+        locationName.textContent =  "please provide a location to search for..."; 
+    }
     let data = getWeather(location)
 
     if(data.error){}

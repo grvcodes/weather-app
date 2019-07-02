@@ -24,8 +24,7 @@ header{
     font-size: 1rem;
     font-family: monospace;
     margin: 0;
-    background-color: white;
-    
+    background-color: #292828;
 }
 header img{
     margin: 0 1em 0 .5rem;
@@ -43,7 +42,7 @@ form.special input{
     font-size: 1rem;
     padding: .1em .8em;
     width: 70%;
-    border: 2px solid rgb(214, 73, 73);
+    border: none;
     border-right: none;
     border-radius: 1em 0 0 1em;
 }
@@ -53,7 +52,7 @@ form.special button{
     color: white;
     background-color: rgb(214, 73, 73);
     border-radius: 0 1em 1em 0;
-    border: 2px solid rgb(214, 73, 73);
+    border: none;
     border-left: none;
     position: absolute;
     left: 70%;
