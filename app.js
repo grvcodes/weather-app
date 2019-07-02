@@ -54,6 +54,27 @@ app.get('/location',(req,res)=>{
         
         })
 })
+// to get weather details for current position using browser api ///
+app.get('/geoweather',(req,res)=>{
+    if(!req.query.lat || !req.query.long){
+        return res.send({error : "please provide a location"})
+    }
+    let geoData = {
+                    latitude : req.query.lat,
+                    longitude : req.query.long
+                  }
+    forecast(geoData,(err,forecastData)=>{
+            if(err){
+                console.log("error2");
+                return res.send({error : err})
+            }
+            console.log("fetc");
+            res.send({            
+                forecast: forecastData,
+                location: "cuurent location"
+            })
+        })
+    })
 
 app.listen(port,()=>{
     console.log("server started");

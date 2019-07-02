@@ -1,3 +1,4 @@
+
 let form = document.querySelector("form.special")
 let input = document.querySelector("input");
 
@@ -44,6 +45,44 @@ function hasClass(element,className){
     return false
 }
 
+const getWeather = function(location){
+
+    fetch("/weather?q="+location).then((res)=>{
+        res.json().then((data)=>{
+            loader.classList.toggle("hide");/*add hide class to hide the loader*/
+            wrapperTo.classList.toggle("hide");/*remove hide class to display data ehen available*/
+            if(data.error){
+                return ({error : data.error});
+            }
+            console.log(data.forecast);
+            return({data:data.forecast,
+                    location:data.location}
+            )
+        })
+    })
+}
+
+window.addEventListener('load',()=>{
+    navigator.geolocation.getCurrentPosition((pos)=>{
+        fetch("/geoweather?lat="+pos.coords.latitude+"?long="+pos.coords.longitude).then((res)=>{
+            res.json().then((data)=>{
+                loader.classList.toggle("hide");/*add hide class to hide the loader*/
+                wrapperTo.classList.toggle("hide");/*remove hide class to display data ehen available*/
+                if(data.error){
+                    return ({error : data.error});
+                }
+                console.log(data.forecast);
+                return({data:data.forecast,
+                        location:data.location}
+                )
+            })
+        })
+    })
+})
+
+
+///displays detailed weather details////
+
 form.addEventListener("submit",(e)=>{
 
     e.preventDefault();
@@ -57,29 +96,22 @@ form.addEventListener("submit",(e)=>{
     }
     
     let location = input.value;
-    
-    fetch("/weather?q="+location).then((res)=>{
-        res.json().then((data)=>{
-            loader.classList.toggle("hide");/*add hide class to hide the loader*/
-            wrapperTo.classList.toggle("hide");/*remove hide class to display data ehen available*/
-            if(data.error){
-                return locationName.textContent= data.error;
-            }
-            console.log(data.forecast);
-            locationName.textContent = data.location;
-            
-            temp[0].textContent  = data.forecast.currently.temperature;
-            temp[1].textContent  = data.forecast.currently.temperature;
-            
-            maxTemp.textContent = data.forecast.daily.data[0].temperatureHigh;
-            minTemp.textContent = data.forecast.daily.data[0].temperatureLow;
-            pressure.textContent = data.forecast.daily.data[0].pressure;
-            wind.textContent = data.forecast.daily.data[0].windSpeed;
-            precipProbab.textContent = data.forecast.daily.data[0].precipProbability;
-            humidity.textContent = data.forecast.daily.data[0].humidity;
-            summary.textContent = data.forecast.daily.data[0].summary;
-        })
-    })
-    
+    let data = getWeather(location)
+
+    if(data.error){}
+    else{
+        locationName.textContent = data.location;
+        
+        temp[0].textContent  = data.forecast.currently.temperature;
+        temp[1].textContent  = data.forecast.currently.temperature;
+        
+        maxTemp.textContent = data.forecast.daily.data[0].temperatureHigh;
+        minTemp.textContent = data.forecast.daily.data[0].temperatureLow;
+        pressure.textContent = data.forecast.daily.data[0].pressure;
+        wind.textContent = data.forecast.daily.data[0].windSpeed;
+        precipProbab.textContent = data.forecast.daily.data[0].precipProbability;
+        humidity.textContent = data.forecast.daily.data[0].humidity;
+        summary.textContent = data.forecast.daily.data[0].summary;
+    }
 
 });
