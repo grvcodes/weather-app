@@ -35,6 +35,26 @@ app.get('/weather',(req,res)=>{
     })
 })
 
+///To get data about locations
+
+app.get('/location',(req,res)=>{
+    if(!req.query.q){
+        return res.send({error : "please provide a location"})
+    }
+    let location = req.query.q;
+    console.log(location);
+    geocode(location,(err,geoData)=>{
+        if(err){
+            console.log("error1");
+            return  res.send({error : err});
+        }
+        res.send({
+            location: geoData.location
+        })
+        
+        })
+})
+
 app.listen(port,()=>{
     console.log("server started");
 });

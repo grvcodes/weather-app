@@ -13,6 +13,45 @@ let wrapperTo = document.querySelector(".wrapperTo")
  let precipProbab = document.querySelector("span#precipProbab")
  let humidity = document.querySelector("span#humidity")
  let summary = document.querySelector("div.summary")
+let locationTab = document.querySelector('div.locations')
+let add = document.querySelector('div.add');
+
+
+function createLocationTab(location,temp){
+    let div = document.createElement('div');
+    let h3 = document.createElement('h3');
+    h3.textContent= location;
+    let divFooter = document.createElement("div");
+    divFooter.classList.add("footer");
+    let h4=[];
+    for(i=0;i<2;i++){
+        h4[i]=document.createElement('h4');
+        h4[i].textContent=temp[i];
+    }
+    divFooter.append(h4[0],h4[1]);
+    div.append(h3,divFooter);
+    locationTab.appendChild(div);    
+}
+
+function addLocation(){
+    fetch("/location?q="+location).then((res)=>{
+        res.json().then((data)=>{
+            loader.classList.toggle("hide");/*add hide class to hide the loader*/
+            wrapperTo.classList.toggle("hide");/*remove hide class to display data ehen available*/
+            if(data.error){
+                return locationName.textContent= data.error;
+            }
+            console.log(data);
+            
+        })
+    })
+    
+    let totalLocations = localStorage.getItem("total")
+    if(totalLocations){
+        let label = `location ${totalLocations}`
+        
+    }
+}
 
 
 function hasClass(element,className){
