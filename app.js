@@ -57,7 +57,7 @@ app.get('/location',(req,res)=>{
 // to get weather details for current position using browser api ///
 app.get('/geoweather',(req,res)=>{
     if(!req.query.lat || !req.query.long){
-        return res.send({error : "please provide a location"})
+        return res.send({error : "please provide a valid location"})
     }
     let geoData = {
                     latitude : req.query.lat,
