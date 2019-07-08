@@ -6,23 +6,6 @@ let display = document.querySelector("h3.display");
 let fallback = document.querySelector("div.fallback")
 let save = document.querySelector('button.save')
 
-
-
-
-function addLocation(name){
-    name = name + ','; 
-   if(localStorage.getItem('locations')){
-       let locations = localStorage.getItem('locations').split(',');
-       locations.pop();
-       locations.push(name)
-       localStorage.setItem('locations', locations)
-   }
-   else{
-       localStorage.setItem('locations', name)
-   }
-}
-
-
 function hasClass(element,className){
     let x= element.classList;
     for(i=0;i<2;i++){
@@ -69,6 +52,41 @@ form.addEventListener("submit",(e)=>{
 
 save.addEventListener('click',e =>{
     e.preventDefault();
-    addLocation(display.textContent);
-    window.location("/index.html");
+    LOCAL.addLoc(display.textContent);
 })
+
+
+let state;
+class LocStorage {
+    constructor(){
+        state = localStorage.getItem('locations').split(",") 
+    }
+    refresh(){
+        state = localStorage.getItem('locations').split(",")
+        
+    }
+    containLoc(loc){
+        let flag = false;
+        state.forEach(e =>{
+            if(e===loc){
+                flag = true;
+            }
+        })
+        return flag
+    }
+    addLoc(loc){
+     if(this.containLoc(loc)){
+         fallback.textContent="location already saved :)";
+     }
+     else{
+         state.push(loc);
+         localStorage.setItem('locations',state.join())
+         this.refresh()
+         console.log(state)
+     }
+    
+    }
+   
+}
+ let LOCAL = new LocStorage();
+ 

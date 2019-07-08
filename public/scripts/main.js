@@ -2,6 +2,7 @@
 let form = document.querySelector("form.special")
 let input = document.querySelector("input");
 
+
 let loader = document.querySelector(".loader")
 let fallback = document.querySelector('.fallback')
  let wrapperTo = document.querySelector(".wrapperTo")
@@ -18,6 +19,22 @@ let fallback = document.querySelector('.fallback')
 
 let add = document.querySelector('div.add');
 
+function mainView(data){
+    console.log(data.forecast);
+    locationName.textContent = data.location;
+    
+    temp[0].textContent  = data.forecast.currently.temperature;
+    temp[1].textContent  = data.forecast.currently.temperature;
+    
+    maxTemp.textContent = data.forecast.daily.data[0].temperatureHigh;
+    minTemp.textContent = data.forecast.daily.data[0].temperatureLow;
+    pressure.textContent = data.forecast.daily.data[0].pressure;
+    wind.textContent = data.forecast.daily.data[0].windSpeed;
+    precipProbab.textContent = data.forecast.daily.data[0].precipProbability;
+    humidity.textContent = data.forecast.daily.data[0].humidity;
+    summary.textContent = data.forecast.daily.data[0].summary;
+    
+}
 
 function createLocationTab(location,temp){
     let div = document.createElement('div');
@@ -64,33 +81,25 @@ const getWeather = function(location){
 }
 
 window.addEventListener('load',()=>{
+    fallback.display="none";
     navigator.geolocation.getCurrentPosition((pos)=>{
+        
         fetch("/geoweather?lat="+pos.coords.latitude+"?long="+pos.coords.longitude).then((res)=>{
             res.json().then((data)=>{
                 loader.classList.toggle("hide");/*add hide class to hide the loader*/
                 wrapperTo.classList.toggle("hide");/*remove hide class to display data ehen available*/
                 if(data.error){
+                    fallback.display="block";
                     fallback.textContent= data.error;
                 }
                 else
                 {
-                    console.log(data.forecast);
-                    locationName.textContent = data.location;
-                    
-                    temp[0].textContent  = data.forecast.currently.temperature;
-                    temp[1].textContent  = data.forecast.currently.temperature;
-                    
-                    maxTemp.textContent = data.forecast.daily.data[0].temperatureHigh;
-                    minTemp.textContent = data.forecast.daily.data[0].temperatureLow;
-                    pressure.textContent = data.forecast.daily.data[0].pressure;
-                    wind.textContent = data.forecast.daily.data[0].windSpeed;
-                    precipProbab.textContent = data.forecast.daily.data[0].precipProbability;
-                    humidity.textContent = data.forecast.daily.data[0].humidity;
-                    summary.textContent = data.forecast.daily.data[0].summary;
+                   mainView(data);
                 }}
                 )
             })
         })
+        
 })
 
 
@@ -98,7 +107,7 @@ window.addEventListener('load',()=>{
 ///displays detailed weather details////
 
 form.addEventListener("submit",(e)=>{
-
+    fallback.display="none";
     e.preventDefault();
     fallback.textContent="";
     /*remove hide class to loader if present*/
@@ -113,24 +122,19 @@ form.addEventListener("submit",(e)=>{
     let location = input.value;
     if(! location){
         loader.classList.toggle("hide");
+        fallback.display="none";
         fallback.textContent =  "please provide a location to search for..."; 
     }
     let data = getWeather(location)
 
-    if(data.error){}
+    if(data.error){
+        fallback.display="none";
+        fallback.textContent= data.error;
+    }
     else{
-        locationName.textContent = data.location;
-        
-        temp[0].textContent  = data.forecast.currently.temperature;
-        temp[1].textContent  = data.forecast.currently.temperature;
-        
-        maxTemp.textContent = data.forecast.daily.data[0].temperatureHigh;
-        minTemp.textContent = data.forecast.daily.data[0].temperatureLow;
-        pressure.textContent = data.forecast.daily.data[0].pressure;
-        wind.textContent = data.forecast.daily.data[0].windSpeed;
-        precipProbab.textContent = data.forecast.daily.data[0].precipProbability;
-        humidity.textContent = data.forecast.daily.data[0].humidity;
-        summary.textContent = data.forecast.daily.data[0].summary;
+        mainView(data);
     }
 
 });
+
+
