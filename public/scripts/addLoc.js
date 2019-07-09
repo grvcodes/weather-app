@@ -56,12 +56,16 @@ save.addEventListener('click',e =>{
 })
 
 
-let state;
+let state = [];
 class LocStorage {
     constructor(){
-        state = localStorage.getItem('locations').split(",") 
+        if(localStorage.getItem('locations')){
+            state = localStorage.getItem('locations').split(",")
+        }
+        
     }
     refresh(){
+
         state = localStorage.getItem('locations').split(",")
         
     }
@@ -83,10 +87,20 @@ class LocStorage {
          localStorage.setItem('locations',state.join())
          this.refresh()
          console.log(state)
+        //  localStorage.setItem(loc,'20,25');
      }
     
     }
    
 }
- let LOCAL = new LocStorage();
+let LOCAL = new LocStorage();
+LOCAL.addLoc("dj7");
+LOCAL.addLoc("dj6");
+LOCAL.addLoc("dj5");
+LOCAL.addLoc("dj4");
+LOCAL.addLoc("dj3");
+LOCAL.addLoc("dj2");
+LOCAL.addLoc("dj");
+LOCAL.addLoc("dj1");
+ 
  

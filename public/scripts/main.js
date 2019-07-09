@@ -1,4 +1,5 @@
-
+let state = localStorage.getItem('locations').split(",");
+console.log(state);
 let form = document.querySelector("form.special")
 let input = document.querySelector("input");
 
@@ -16,8 +17,8 @@ let fallback = document.querySelector('.fallback')
  let humidity = document.querySelector("span#humidity")
  let summary = document.querySelector("div.summary")
  let locationTab = document.querySelector('div.locations')
+ let addTab =  document.querySelector('div.locations a.add')
 
-let add = document.querySelector('div.add');
 
 function mainView(data){
     console.log(data.forecast);
@@ -99,7 +100,11 @@ window.addEventListener('load',()=>{
                 )
             })
         })
-        
+    locationTab.removeChild(addTab);
+    state.forEach(e=>{
+        createLocationTab(e,[10,25])
+    })
+    locationTab.append(addTab);   
 })
 
 
@@ -122,13 +127,19 @@ form.addEventListener("submit",(e)=>{
     let location = input.value;
     if(! location){
         loader.classList.toggle("hide");
-        fallback.display="none";
+        fallback.display="static";
         fallback.textContent =  "please provide a location to search for..."; 
+        return;
     }
     let data = getWeather(location)
-
+    if(!data){
+        loader.classList.toggle('hide');
+        fallback.display="static"
+        fallback.textContent = "no internet connection"
+        return;
+    }
     if(data.error){
-        fallback.display="none";
+        fallback.display="static";
         fallback.textContent= data.error;
     }
     else{
