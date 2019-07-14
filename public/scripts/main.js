@@ -91,7 +91,7 @@ window.addEventListener('load',()=>{
     fallback.display="none";
     navigator.geolocation.getCurrentPosition((pos)=>{
         
-        fetch("/geoweather?lat="+pos.coords.latitude+"?long="+pos.coords.longitude).then((res)=>{
+        fetch("/geoweather?lat="+pos.coords.latitude+"&?long="+pos.coords.longitude).then((res)=>{
             res.json().then((data)=>{
                 loader.classList.toggle("hide");/*add hide class to hide the loader*/
                 wrapperTo.classList.toggle("hide");/*remove hide class to display data ehen available*/
