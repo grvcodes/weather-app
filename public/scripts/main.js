@@ -2,7 +2,7 @@
 let form = document.querySelector("form.special")
 let input = document.querySelector("input");
 
-let state = localStorage.getItem("locations").split(",");
+let state =  [];
 let loader = document.querySelector(".loader")
 let fallback = document.querySelector('.fallback')
  let wrapperTo = document.querySelector(".wrapperTo")
@@ -17,7 +17,10 @@ let fallback = document.querySelector('.fallback')
  let summary = document.querySelector("div.summary")
  let locationTab = document.querySelector('div.locations')
  let addTab =  document.querySelector('div.locations a.add')
-
+ 
+ if(localStorage.getItem('locations')){
+     state = localStorage.getItem('locations').split(",");
+ }
 
 
 
