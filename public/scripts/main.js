@@ -1,9 +1,8 @@
-let state = localStorage.getItem('locations').split(",");
-console.log(state);
+
 let form = document.querySelector("form.special")
 let input = document.querySelector("input");
 
-
+let state = localStorage.getItem("locations").split(",");
 let loader = document.querySelector(".loader")
 let fallback = document.querySelector('.fallback')
  let wrapperTo = document.querySelector(".wrapperTo")
@@ -18,6 +17,8 @@ let fallback = document.querySelector('.fallback')
  let summary = document.querySelector("div.summary")
  let locationTab = document.querySelector('div.locations')
  let addTab =  document.querySelector('div.locations a.add')
+
+
 
 
 function mainView(data){
@@ -50,9 +51,11 @@ function createLocationTab(location,temp){
     }
     divFooter.append(h4[0],h4[1]);
     div.append(h3,divFooter);
+
+
+    
     locationTab.appendChild(div);    
 }
-
 function hasClass(element,className){
     let x= element.classList;
     for(i=0;i<2;i++){
@@ -102,7 +105,7 @@ window.addEventListener('load',()=>{
         })
     locationTab.removeChild(addTab);
     state.forEach(e=>{
-        createLocationTab(e,[10,25])
+        createLocationTab(e,)
     })
     locationTab.append(addTab);   
 })

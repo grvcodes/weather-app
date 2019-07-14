@@ -133,10 +133,12 @@ div.data ul li span{
 .hide{
     display: none;
 }
-#graph{
-    height: 500px;
+/* svg{
+    height: 600px;
     min-width: 100vw;
-}
+    background-color: gainsboro;
+    overflow: scroll;
+} */
 div.locations{
     margin: 2em 2vw;
     display: flex;
@@ -206,6 +208,7 @@ div.locations>div div.footer h4{
 }
 
 form.addLoc-form{
+    width: fit-content;
     margin: auto;  
 }
 form.addLoc-form input{

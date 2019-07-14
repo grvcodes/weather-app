@@ -6,9 +6,48 @@ let display = document.querySelector("h3.display");
 let fallback = document.querySelector("div.fallback")
 let save = document.querySelector('button.save')
 
+let flag = false
+let state = [];
+class LocStorage {
+    constructor(){
+        if(localStorage.getItem('locations')){
+            flag = true;
+            state = localStorage.getItem('locations').split(",")
+        }
+        
+    }
+    refresh(){
+
+        state = localStorage.getItem('locations').split(",")
+        
+    }
+    containLoc(loc){
+        let flag = false;
+        state.forEach(e =>{
+            if(e===loc){
+                flag = true;
+            }
+        })
+        return flag
+    }
+    addLoc(loc){
+        if(this.containLoc(loc)){
+            fallback.textContent="location already saved :)";
+        }
+        else{
+            state.push(loc);
+            localStorage.setItem('locations',state.join())
+            this.refresh()
+            console.log(state)
+        }
+    }
+   
+}
+let LOCAL = new LocStorage();
+
 function hasClass(element,className){
     let x= element.classList;
-    for(i=0;i<2;i++){
+    for(i=0;i<element.classList.length;i++){
         if(x[i]==className){
             console.log("have this class")
             return true
@@ -42,7 +81,6 @@ form.addEventListener("submit",(e)=>{
                 if(data.error){
                     return fallback.textContent= data.error;
                 }
-                
                 display.textContent = data.location;
             })
         })
@@ -53,54 +91,10 @@ form.addEventListener("submit",(e)=>{
 save.addEventListener('click',e =>{
     e.preventDefault();
     LOCAL.addLoc(display.textContent);
+    
 })
 
 
-let state = [];
-class LocStorage {
-    constructor(){
-        if(localStorage.getItem('locations')){
-            state = localStorage.getItem('locations').split(",")
-        }
-        
-    }
-    refresh(){
 
-        state = localStorage.getItem('locations').split(",")
-        
-    }
-    containLoc(loc){
-        let flag = false;
-        state.forEach(e =>{
-            if(e===loc){
-                flag = true;
-            }
-        })
-        return flag
-    }
-    addLoc(loc){
-     if(this.containLoc(loc)){
-         fallback.textContent="location already saved :)";
-     }
-     else{
-         state.push(loc);
-         localStorage.setItem('locations',state.join())
-         this.refresh()
-         console.log(state)
-        //  localStorage.setItem(loc,'20,25');
-     }
-    
-    }
-   
-}
-let LOCAL = new LocStorage();
-LOCAL.addLoc("dj7");
-LOCAL.addLoc("dj6");
-LOCAL.addLoc("dj5");
-LOCAL.addLoc("dj4");
-LOCAL.addLoc("dj3");
-LOCAL.addLoc("dj2");
-LOCAL.addLoc("dj");
-LOCAL.addLoc("dj1");
- 
+
  
