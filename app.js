@@ -46,7 +46,7 @@ app.get('/location',(req,res)=>{
     geocode(location,(err,geoData)=>{
         if(err){
             console.log("error1");
-            return  res.send({error : err});
+            return  res.send({error : "to err is human"});
         }
         res.send({
             location: geoData.location
